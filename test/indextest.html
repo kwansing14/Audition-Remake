@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <audio id="track" src="../audio/iwantitthatway.mp3"
+       ontimeupdate="document.getElementById('tracktime').innerHTML = (this.currentTime).toFixed(1) + ' / ' + Math.floor(this.duration);">
+    <p>Your browser does not support the audio element</p>
+</audio>
+<span id="tracktime">0 / 0</span>
+<button onclick="document.getElementById('track').play();
+timer();">Play</button>
+    <span id="timer"></span>
+
+    <script src="scripttest.js"></script>
+</body>
+</html>

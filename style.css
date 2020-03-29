@@ -1,0 +1,86 @@
+.arrow {
+	height: 30px;
+	width: 30px;
+}
+#discontainer {
+	width:600px;
+	display: flex;
+	justify-content: space-between;
+}
+body{
+	background-image: url("img/UI/concertbackground.jpg");
+}
+#div2 {
+	border: 2px solid black;
+	width: 600px;
+	height: 54px;
+	padding: 10px;
+	background: grey;
+	opacity: 80%;
+	margin: 50px 0;
+	border-radius: 25px;
+	display:flex;
+	justify-content: center;
+	align-items: flex-end;
+}
+#displayArrow{
+	height: 30px;
+}
+#level{
+	background-color:red;
+	height: 13px;
+	width: 100px;
+}
+#score{
+	background-color:green;
+	height: 13px;
+	width: 100px;
+}
+#pacer{
+	border: 1px solid black;
+	width: 300px;
+ 	height: 13px;
+  background: grey;
+  opacity: 80%;
+	border-radius: 25px;
+	line-height: 0;
+}
+#pacer2{
+	height: 11px;
+	width: 50px;
+	margin: 0px 0px 0px 195px;
+	padding: 0px;
+}
+#shiny{
+	position: relative;
+	font-size:10px;
+	height:13px;
+}
+.container {
+	height: 500px;
+	padding: 40px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+}
+.hide{
+	display:none;
+	height: 30px;
+}
+#zhongjian{
+	height: 70px;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	margin: 50px;
+}
+
+/*moving eleemnts*/
+
+#animate123 {
+  width: 5px;
+  height: 11px;
+  position: absolute;
+  background-color: red;
+}
