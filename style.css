@@ -31,17 +31,21 @@ body{
 	opacity: 70%;
 	border-radius: 25px;
 	border: 1px solid black;
-	height: 30px;
 	width: 100px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #score{
 	background-color:#c1e3ff;
 	opacity: 70%;
 	border-radius: 25px;
 	border: 1px solid black;
-	height: 30px;
 	width: 100px;
 	margin: 0 0 0 -60px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #pacer{
 	border: 1px solid black;

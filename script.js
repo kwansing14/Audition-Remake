@@ -29,9 +29,11 @@ var score=0;
 var scoreTotal = 0;
 var hit;
 var combo=0;
+var comboTotal=0;
 var keys=7;
 var correctKey = 0;
 var timer;
+var spacebarcheck;
 var music = document.getElementById("myAudio");
 
 var zhongjian = document.querySelector("#zhongjian");
@@ -53,10 +55,11 @@ var startTimer = function () {
         var elapsedTime = Date.now() - startTime;
         timer = (elapsedTime / 1000).toFixed(2);
         document.getElementById("timer").innerHTML = (elapsedTime / 1000).toFixed(3);
-        document.getElementById("combo").innerHTML = "Combo: "+combo;
-        if(combo == 3)
-        x = timer - ((1.21) * (y));
+        document.getElementById("combo").innerHTML = "Combo: "+comboTotal;
+        level = keys-6;
+        document.getElementById("level").innerHTML = "Level: "+level;
 
+        x = timer - ((1.21) * (y));
 
         if (timer > 102.5) {
             console.log("stop!!!!!")
@@ -69,7 +72,7 @@ var startTimer = function () {
             var zjtext = document.createElement("div");
             zjtext.classList.add("class","scoreBoard")
             zjtext.innerHTML = "Your score is: "
-                            +score+
+                            +scoreTotal+
                             "\nCongratulations!";
             zj.appendChild(zjtext)
 
@@ -99,35 +102,44 @@ var checkBeats = function (){
         zhongjian.firstChild.setAttribute("src","")
         var delA = document.getElementById("displayArrow");
         delA.setAttribute("class","");
+        spacebarcheck = 0;
         generateArrow();
     } else if (y%4 == 1) {
         setTimeout(
             function(){ hit = "Great!";
             console.log("Great!")
-            score = 300;
+            //score = 300;
         }, 1212-100);
         setTimeout(
             function(){ hit = "Perfect!";
             console.log("Perfect!")
-            score = 500;
+            //score = 500;
         }, 1212-50);
         setTimeout(
             function(){ hit = "Great!";
             console.log("Great!")
-            score = 300;
+            //score = 300;
         }, 1212+50);
         setTimeout(
             function(){ hit = "Cool!";
             console.log("Cool!")
-            score = 100;
+            //score = 100;
         }, 1212+100);
     } else if (y%4 == 2) {
 
-            setTimeout(function(){
-            delArrow();
+        setTimeout(function(){
+            if(spacebarcheck == 0){
+                var zhongjian = document.querySelector("#zhongjian");
+                zhongjian.firstChild.setAttribute("src","img/UI/missed.png")
+                zhongjian.firstChild.width = "400";
+                comboTotal = 0;
+                correctKey=0;
+                delArrow();
+            }
         }, 500);
     }
 }
+
 
 //------------------------------button start audio and timer
 function timeFunction() {
@@ -192,49 +204,50 @@ var play = function () {
     console.log("left!!")
     if(event.keyCode == indexArray[counter]) {
         imgArray[counter].setAttribute("src",leftyellow);
+        counter++;
         console.log("correct!")
         correctKey += 1;
     } else {
         console.log("wrong!")
         wrong();
     }
-    counter++;
   }
   if(event.keyCode == 38) {
     console.log("up!!")
     if(event.keyCode == indexArray[counter]) {
         imgArray[counter].setAttribute("src",upyellow);
+        counter++;
         console.log("correct!")
         correctKey += 1;
     } else {
         console.log("wrong!")
         wrong();
     }
-    counter++;
   }
   if(event.keyCode == 39) {
     console.log("right!!")
     if(event.keyCode == indexArray[counter]) {
         imgArray[counter].setAttribute("src",rightyellow);
+        counter++;
         console.log("correct!")
         correctKey += 1;
     } else {
         console.log("wrong!")
         wrong();
     }
-    counter++;
   }
   if(event.keyCode == 40) {
     console.log("down!!")
     if(event.keyCode == indexArray[counter]) {
         imgArray[counter].setAttribute("src",downyellow);
+        counter++;
         console.log("correct!")
         correctKey += 1;
     } else {
+
         console.log("wrong!")
         wrong();
     }
-    counter++;
   }
 }
 //----------------------------------------hide the arows
@@ -256,15 +269,19 @@ var wrong = function () {
     switch(indexArray[counter]) {
         case "37":
             imgArray[counter].setAttribute("src",leftred);
+            counter++;
             break;
         case "38":
             imgArray[counter].setAttribute("src",upred);
+            counter++;
             break;
         case "39":
             imgArray[counter].setAttribute("src",rightred);
+            counter++;
             break;
         case "40":
             imgArray[counter].setAttribute("src",downred);
+            counter++;
             break;
         default:
         console.log("no found")
@@ -277,42 +294,53 @@ var displayMid = function () {
     if(hit == "Cool!") {
         zhongjian.firstChild.setAttribute("src","img/UI/cool.png")
         zhongjian.firstChild.width = "400";
+        score = 100;
+        comboTotal = 0;
     }else if(hit == "Great!"){
         zhongjian.firstChild.setAttribute("src","img/UI/great.png")
         zhongjian.firstChild.width = "450";
+        score = 300;
+        comboTotal += 1;
     }else if(hit == "Perfect!") {
         zhongjian.firstChild.setAttribute("src","img/UI/perfect.png")
         zhongjian.firstChild.width = "500";
+        score = 500;
+        comboTotal += 1;
     }
 }
 //--------------------------------------main function when input
 var logKey = function (e) {
-
-    if(beat != 1 || beat != beat!= 5){
-        //--------------------------------spacebar
-        if(event.keyCode == 32) {
-            console.log("spacebar!!");
-            console.log("U pressed: "+hit);
-            delArrow();
-             if (correctKey == keys) {
-                console.log("7 keys")
-                var idscore = document.querySelector("#score");
-                scoreTotal += score;
-                idscore.innerText = ("Score: "+scoreTotal);
-                displayMid ();
-
-            } else {
-                var idscore = document.querySelector("#score");
-                var zhongjian = document.querySelector("#zhongjian");
-                zhongjian.firstChild.setAttribute("src","img/UI/missed.png")
-                zhongjian.firstChild.width = "400";
-
-            }
-            correctKey = 0;
+    //--------------------------------spacebar
+    if(event.keyCode == 32) {
+        console.log("spacebar!!");
+        console.log("U pressed: "+hit);
+        spacebarcheck = 1;
+        delArrow();
+         if (correctKey == keys) {
+            displayMid ();
+            var idscore = document.querySelector("#score");
+            scoreTotal += score;
+            idscore.innerText = ("Score: "+scoreTotal);
+        } else {
+            var idscore = document.querySelector("#score");
+            var zhongjian = document.querySelector("#zhongjian");
+            zhongjian.firstChild.setAttribute("src","img/UI/missed.png")
+            zhongjian.firstChild.width = "400";
+            comboTotal = 0;
         }
-        //---------------------------------updownleftright
-        play();
+        correctKey = 0;
+
+        if (comboTotal >= 3) {
+            if (keys<10) {
+                keys++;
+            }
+        } else {
+            keys = 7;
+        }
     }
+    //---------------------------------updownleftright
+    play();
 }
+
 
 document.addEventListener('keydown', logKey);
