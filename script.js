@@ -25,8 +25,11 @@ var counter = 0;
 var randomArrow;
 var indexArray = [];
 var imgArray = [];
-var score;
+var score=0;
+var scoreTotal = 0;
 var hit;
+var combo=0;
+var keys=7;
 var correctKey = 0;
 var timer;
 var music = document.getElementById("myAudio");
@@ -50,10 +53,27 @@ var startTimer = function () {
         var elapsedTime = Date.now() - startTime;
         timer = (elapsedTime / 1000).toFixed(2);
         document.getElementById("timer").innerHTML = (elapsedTime / 1000).toFixed(3);
-
+        document.getElementById("combo").innerHTML = "Combo: "+combo;
+        if(combo == 3)
         x = timer - ((1.21) * (y));
 
-        if (x>1.21) {
+
+        if (timer > 102.5) {
+            console.log("stop!!!!!")
+            music.pause()
+            clearInterval(interval);
+            delArrow();
+            var del = document.querySelector("#pgc")
+            del.remove();
+            var zj = document.querySelector("#zhongjian")
+            var zjtext = document.createElement("div");
+            zjtext.classList.add("class","scoreBoard")
+            zjtext.innerHTML = "Your score is: "
+                            +score+
+                            "\nCongratulations!";
+            zj.appendChild(zjtext)
+
+        }else if (x>1.21) {
             y++;
             console.log("fire: "+y);
             checkBeats ();
@@ -69,16 +89,13 @@ var checkBeats = function (){
     if (y == 1){
         zhongjian.firstChild.setAttribute("src","img/UI/3.png")
         zhongjian.firstChild.width = "50";
-    }
-    if (y == 2){
+    } else if (y == 2){
         zhongjian.firstChild.setAttribute("src","img/UI/2.png")
         zhongjian.firstChild.width = "50";
-    }
-    if (y == 3){
+    } else if (y == 3){
         zhongjian.firstChild.setAttribute("src","img/UI/1.png")
         zhongjian.firstChild.width = "30";
-    }
-    if (y%4 == 0){
+    } else if (y%4 == 0){
         zhongjian.firstChild.setAttribute("src","")
         var delA = document.getElementById("displayArrow");
         delA.setAttribute("class","");
@@ -87,18 +104,22 @@ var checkBeats = function (){
         setTimeout(
             function(){ hit = "Great!";
             console.log("Great!")
+            score = 300;
         }, 1212-100);
         setTimeout(
             function(){ hit = "Perfect!";
             console.log("Perfect!")
+            score = 500;
         }, 1212-50);
         setTimeout(
             function(){ hit = "Great!";
             console.log("Great!")
+            score = 300;
         }, 1212+50);
         setTimeout(
             function(){ hit = "Cool!";
             console.log("Cool!")
+            score = 100;
         }, 1212+100);
     } else if (y%4 == 2) {
 
@@ -108,15 +129,11 @@ var checkBeats = function (){
     }
 }
 
-//------------------------------audio function
-function playAudio() {
-
-}
-function pauseAudio() {
-  music.pause();
-}
-
+//------------------------------button start audio and timer
 function timeFunction() {
+    var playButton = document.querySelector("#play")
+    playButton.setAttribute("class","hide")
+
     music.play();
     music.volume=0.5;
     setTimeout(function(){
@@ -127,7 +144,7 @@ function timeFunction() {
 
 //----------------------generate random arrow & push indexArray in sequence
 var generateArrow = function () {
-    for(var i=0; i<7 ; i++) {
+    for(var i=0; i<keys ; i++) {
         number = Math.round(Math.random() * 4);
 
         if ( number == 1 || number == 0) {
@@ -171,7 +188,6 @@ function myMove() {
 
 //-----------------------------------------direction input check
 var play = function () {
-
   if(event.keyCode == 37) {
     console.log("left!!")
     if(event.keyCode == indexArray[counter]) {
@@ -227,7 +243,7 @@ var delArrow = function () {
     delA.setAttribute("class","hide");
     imgArray = document.querySelector('#displayArrow').children;
 
-    for(var i=0 ; i<7 ; i++) {
+    for(var i=0 ; i<keys ; i++) {
         imgArray[0].remove();
     }
 
@@ -274,22 +290,23 @@ var logKey = function (e) {
 
     if(beat != 1 || beat != beat!= 5){
         //--------------------------------spacebar
-        if(event.keyCode == 86) {
+        if(event.keyCode == 32) {
             console.log("spacebar!!");
             console.log("U pressed: "+hit);
             delArrow();
-             if (correctKey == 7) {
+             if (correctKey == keys) {
                 console.log("7 keys")
                 var idscore = document.querySelector("#score");
-                idscore.innerText = hit;
+                scoreTotal += score;
+                idscore.innerText = ("Score: "+scoreTotal);
                 displayMid ();
 
             } else {
                 var idscore = document.querySelector("#score");
-                idscore.innerText = "missed!";
                 var zhongjian = document.querySelector("#zhongjian");
                 zhongjian.firstChild.setAttribute("src","img/UI/missed.png")
                 zhongjian.firstChild.width = "400";
+
             }
             correctKey = 0;
         }
