@@ -75,7 +75,6 @@ var startTimer = function () {
                             +scoreTotal+
                             "\nCongratulations!";
             zj.appendChild(zjtext)
-
         }else if (x>1.21) {
             y++;
             console.log("fire: "+y);
@@ -98,7 +97,7 @@ var checkBeats = function (){
     } else if (y == 3){
         zhongjian.firstChild.setAttribute("src","img/UI/1.png")
         zhongjian.firstChild.width = "30";
-    } else if (y%4 == 0){
+    } else if (y%4 == 0 && y!=84){
         zhongjian.firstChild.setAttribute("src","")
         var delA = document.getElementById("displayArrow");
         delA.setAttribute("class","");
@@ -132,8 +131,9 @@ var checkBeats = function (){
                 var zhongjian = document.querySelector("#zhongjian");
                 zhongjian.firstChild.setAttribute("src","img/UI/missed.png")
                 zhongjian.firstChild.width = "400";
-                comboTotal = 0;
+                comboTotal=0;
                 correctKey=0;
+                keys = 7;
                 delArrow();
             }
         }, 500);
