@@ -29,8 +29,10 @@ var score=0;
 var scoreTotal = 0;
 var hit;
 var combo=0;
+var level=0;
 var comboTotal=0;
-var keys=7;
+var keys=0;
+var keyToLevel=0;
 var correctKey = 0;
 var timer;
 var spacebarcheck;
@@ -40,6 +42,10 @@ var zhongjian = document.querySelector("#zhongjian");
      var img = document.createElement('img')
      img.setAttribute("id","pgc")
      zhongjian.appendChild(img);
+
+//----------------------------------difficult easy/hard
+//if easy key = 5
+//if hard key = 7
 
 //------------------------------a timer that actually works and accurate UwU
 
@@ -56,7 +62,6 @@ var startTimer = function () {
         timer = (elapsedTime / 1000).toFixed(2);
         document.getElementById("timer").innerHTML = (elapsedTime / 1000).toFixed(3);
         document.getElementById("combo").innerHTML = "Combo: "+comboTotal;
-        level = keys-6;
         document.getElementById("level").innerHTML = "Level: "+level;
 
         x = timer - ((1.21) * (y));
@@ -123,7 +128,6 @@ var checkBeats = function (){
             //score = 100;
         }, 1212+100);
     } else if (y%4 == 2) {
-
         setTimeout(function(){
             if(spacebarcheck == 0){
                 var zhongjian = document.querySelector("#zhongjian");
@@ -131,21 +135,22 @@ var checkBeats = function (){
                 zhongjian.firstChild.width = "400";
                 comboTotal=0;
                 correctKey=0;
-                keys = 7;
+                keyReset();
                 delArrow();
             }
         }, 500);
     }
 }
 
-
 //------------------------------button start audio and timer
 function timeFunction() {
+    keyReset();
+    var inputGroup = document.querySelector("#inputGroup")
+    inputGroup.classList.add("hide")
     var playButton = document.querySelector("#play")
-    playButton.setAttribute("class","hide")
-
+    playButton.classList.add("hide")
     music.play();
-    music.volume=0.5;
+    music.volume=0.2;
     setTimeout(function(){
         startTime = Date.now();
         startTimer()
@@ -257,7 +262,6 @@ var delArrow = function () {
     for(var i=0 ; i<keys ; i++) {
         imgArray[0].remove();
     }
-
     counter = 0;
     indexArray = [];
 
@@ -314,7 +318,7 @@ var logKey = function (e) {
         console.log("U pressed: "+hit);
         spacebarcheck = 1;
         delArrow();
-         if (correctKey == keys) {
+        if (correctKey == keys) {
             displayMid ();
             var idscore = document.querySelector("#score");
             scoreTotal += score;
@@ -329,16 +333,26 @@ var logKey = function (e) {
         correctKey = 0;
 
         if (comboTotal >= 3) {
-            if (keys<10) {
+            if (level<3) {
                 keys++;
+                level++;
             }
         } else {
-            keys = 7;
+            keyReset();
         }
     }
     //---------------------------------updownleftright
     play();
 }
 
+var keyReset = function () {
+    var diffCheck = document.querySelector("#inputGroup").value
+    if(diffCheck == "Easy") {
+        keys = 5;
+    } else if (diffCheck == "Hard") {
+        keys = 7;
+    }
+    level=1;
+}
 
 document.addEventListener('keydown', logKey);
