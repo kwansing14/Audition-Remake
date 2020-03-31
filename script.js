@@ -1,22 +1,22 @@
 
 
 //store all arrows images first
-var up = "img/arrow/up-blue.png";
-var down = "img/arrow/down-blue.png";
-var left = "img/arrow/left-blue.png";
-var right = "img/arrow/right-blue.png";
+var up = "img/Arrow/up-blue.png";
+var down = "img/Arrow/down-blue.png";
+var left = "img/Arrow/left-blue.png";
+var right = "img/Arrow/right-blue.png";
 
 
-var upyellow = "img/arrow/up-yellow.png";
-var downyellow = "img/arrow/down-yellow.png";
+var upyellow = "img/Arrow/up-yellow.png";
+var downyellow = "img/Arrow/down-yellow.png";
 var leftyellow = "img/arrow/left-yellow.png";
 var rightyellow = "img/arrow/right-yellow.png";
 
 
-var upred = "img/arrow/up-red.png";
-var downred = "img/arrow/down-red.png";
-var leftred = "img/arrow/left-red.png";
-var rightred = "img/arrow/right-red.png";
+var upred = "img/Arrow/up-red.png";
+var downred = "img/Arrow/down-red.png";
+var leftred = "img/Arrow/left-red.png";
+var rightred = "img/Arrow/right-red.png";
 var beat=0;
 
 var level;
