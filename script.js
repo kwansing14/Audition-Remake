@@ -70,6 +70,7 @@ var startTimer = function () {
             console.log("stop!!!!!")
             music.pause()
             clearInterval(interval);
+            //----------------------------------------score board
             var del = document.querySelector("#pgc")
             del.remove();
             var zj = document.querySelector("#zhongjian")
@@ -78,6 +79,17 @@ var startTimer = function () {
             zjtext.innerHTML = "Congratulations! Your score is: "
                             +scoreTotal;
             zj.appendChild(zjtext)
+            //----------------------------------------reset button
+            var resetBut = document.createElement("button");
+            resetBut.classList.add("btn")
+            resetBut.classList.add("btn-dark")
+            resetBut.setAttribute("onClick","location.reload();");
+            resetBut.innerHTML = "Click to restart";
+            zj.appendChild(resetBut)
+
+        //     <button id="guide" type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+        //   How to play
+        // </button>
         }else if (x>1.21) {
             y++;
             console.log("fire: "+y);
@@ -351,6 +363,8 @@ var keyReset = function () {
         keys = 5;
     } else if (diffCheck == "Hard") {
         keys = 7;
+    } else if (diffCheck == "Difficulty") {
+        location.reload();
     }
     level=1;
 }
