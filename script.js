@@ -9,8 +9,8 @@ var right = "img/Arrow/right-blue.png";
 
 var upyellow = "img/Arrow/up-yellow.png";
 var downyellow = "img/Arrow/down-yellow.png";
-var leftyellow = "img/arrow/left-yellow.png";
-var rightyellow = "img/arrow/right-yellow.png";
+var leftyellow = "img/Arrow/left-yellow.png";
+var rightyellow = "img/Arrow/right-yellow.png";
 
 
 var upred = "img/Arrow/up-red.png";
