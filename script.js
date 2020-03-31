@@ -70,9 +70,8 @@ var startTimer = function () {
             var zj = document.querySelector("#zhongjian")
             var zjtext = document.createElement("div");
             zjtext.classList.add("class","scoreBoard")
-            zjtext.innerHTML = "Your score is: "
-                            +scoreTotal+
-                            "\nCongratulations!";
+            zjtext.innerHTML = "Congratulations! Your score is: "
+                            +scoreTotal;
             zj.appendChild(zjtext)
         }else if (x>1.21) {
             y++;
