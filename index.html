@@ -10,14 +10,23 @@
     <title>Game Project</title>
 </head>
 <body>
-
     <audio id="myAudio">
         <source src="audio/iwantitthatway2.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
     <div class="container">
-        <button id="play" onclick="timeFunction()">Play</button>
+        <div class="input-group mb-3 w-50">
+            <select class="custom-select" id="inputGroup">
+                <option selected>Difficulty selection...</option>
+                <option value="Easy">Easy</option>
+                <option value="Hard">Hard</option>
+            </select>
+            <div class="input-group-append">
+                <label id="play" class="input-group-text btn-light" for="inputGroupSelect02" onclick="timeFunction()">Play</label>
+            </div>
+        </div>
+        <!-- <button id="play" type="button" class="btn btn-light" onclick="timeFunction()">Play</button> -->
         <div id="combo"></div>
         <div id="timer"></div>
 
