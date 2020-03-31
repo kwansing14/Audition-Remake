@@ -65,7 +65,6 @@ var startTimer = function () {
             console.log("stop!!!!!")
             music.pause()
             clearInterval(interval);
-            delArrow();
             var del = document.querySelector("#pgc")
             del.remove();
             var zj = document.querySelector("#zhongjian")
