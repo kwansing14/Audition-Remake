@@ -87,9 +87,6 @@ var startTimer = function () {
             resetBut.innerHTML = "Click to restart";
             zj.appendChild(resetBut)
 
-        //     <button id="guide" type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
-        //   How to play
-        // </button>
         }else if (x>1.21) {
             y++;
             console.log("fire: "+y);
@@ -147,8 +144,8 @@ var checkBeats = function (){
                 zhongjian.firstChild.width = "400";
                 comboTotal=0;
                 correctKey=0;
-                keyReset();
                 delArrow();
+                keyReset();
             }
         }, 500);
     }
