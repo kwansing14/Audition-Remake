@@ -215,7 +215,7 @@ var play = function () {
   if(event.keyCode == 37) {
     console.log("left!!")
     if(event.keyCode == indexArray[counter]) {
-        imgArray[counter].setAttribute("src",leftyellow);
+        imgArray[counter].setAttribute("src",leftyellow); //[ 37, 38, 39, 40]
         counter++;
         console.log("correct!")
         correctKey += 1;

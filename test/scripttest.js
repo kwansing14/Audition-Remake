@@ -41,16 +41,27 @@
 // }
 
 // startTimer ();
-var t1=0;
-var t2=0;
-var timer = function () {
-        var x = document.getElementById("track");
-        var time = Math.floor(x.currentTime);
-        var t1 = Math.floor(x.currentTime);
-        if ((t2-t1)==1) {
-            beat++;
-            console.log(beat)
-        }
-        var t2 = Math.floor(x.currentTime);
-    }
+// var t1=0;
+// var t2=0;
+// var timer = function () {
+//         var x = document.getElementById("track");
+//         var time = Math.floor(x.currentTime);
+//         var t1 = Math.floor(x.currentTime);
+//         if ((t2-t1)==1) {
+//             beat++;
+//             console.log(beat)
+//         }
+//         var t2 = Math.floor(x.currentTime);
+//     }
+// }
+function hi (){
+    console.log('hi again')
 }
+
+function setabc () {
+    console.log('hi i am stupid programmer')
+    console.log('i dunno whats 1+1')
+    hiagain();
+}
+
+setabc();
